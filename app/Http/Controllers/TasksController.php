@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class TasksController extends Controller
 {
 	public function index ()
 	{
 		$user = Auth::user();
-		return view('welcome', compact('user'))
+		return view('welcome', compact('user'));
 	}
 
 	public function add()
@@ -23,7 +24,7 @@ class TasksController extends Controller
 		$task->description = $request->description;
 		$task->user_id = Auth::id();
 		$task->save();
-		return redirect('/')
+		return redirect('/');
 	}
 
 	public function edit(Task $task)
